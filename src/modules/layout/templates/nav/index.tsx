@@ -1,69 +1,70 @@
+import { Suspense } from "react"
 
-import { Suspense } from "react";
-import { listRegions } from "@lib/data";
-import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import CartButton from "@modules/layout/components/cart-button";
-import SideMenu from "@modules/layout/components/side-menu";
-import { Navbar } from "flowbite-react"; // Assuming you are using Flowbite React components
-import Link from 'next/link'; // Assuming you are using Next.js for routing
+import { listRegions } from "@lib/data"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import CartButton from "@modules/layout/components/cart-button"
+import SideMenu from "@modules/layout/components/side-menu"
 
 export default async function Nav() {
-  const regions = await listRegions().then((regions) => regions);
+  const regions = await listRegions().then((regions) => regions)
 
   return (
-    <Navbar fluid rounded>
-      <Navbar.Brand as={Link} href="https://flowbite-react.com">
-        <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite React</span>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-      <Navbar.Collapse>
-        {process.env.FEATURE_SEARCH_ENABLED && (
-          <LocalizedClientLink
-            className="hover:text-ui-fg-base"
-            href="/search"
-            scroll={false}
-            data-testid="nav-search-link"
-          >
-            Search
-          </LocalizedClientLink>
-        )}
-        <LocalizedClientLink
-          className="hover:text-ui-fg-base"
-          href="/account"
-          data-testid="nav-account-link"
-        >
-          Account
-        </LocalizedClientLink>
-        <Suspense
-          fallback={
+    <div className="sticky top-0 inset-x-0 z-50 group">
+      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
+        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
+          <div className="flex-1 basis-0 h-full flex items-center">
+            <div className="h-full">
+              <SideMenu regions={regions} />
+            </div>
+          </div>
+
+          <div className="flex items-center h-full">
             <LocalizedClientLink
-              className="hover:text-ui-fg-base flex gap-2"
-              href="/cart"
-              data-testid="nav-cart-link"
+              href="/"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+              data-testid="nav-store-link"
             >
-              Cart (0)
+              <img className="h-8 w-auto" src="/logo.png" alt="" />
+        
             </LocalizedClientLink>
-          }
-        >
-          <CartButton />
-        </Suspense>
-        <Navbar.Link as={Link} href="/" active>
-          Home
-        </Navbar.Link>
-        <Navbar.Link as={Link} href="/about">
-          About
-        </Navbar.Link>
-        <Navbar.Link as={Link} href="/services">
-          Services
-        </Navbar.Link>
-        <Navbar.Link as={Link} href="/pricing">
-          Pricing
-        </Navbar.Link>
-        <Navbar.Link as={Link} href="/contact">
-          Contact
-        </Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
-  );
+          </div>
+
+          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+            <div className="hidden small:flex items-center gap-x-6 h-full">
+              {process.env.FEATURE_SEARCH_ENABLED && (
+                <LocalizedClientLink
+                  className="hover:text-ui-fg-base"
+                  href="/search"
+                  scroll={false}
+                  data-testid="nav-search-link"
+                >
+                  搜尋
+                </LocalizedClientLink>
+              )}
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href="/account"
+                data-testid="nav-account-link"
+              >
+                帳號
+              </LocalizedClientLink>
+            </div>
+            <Suspense
+              fallback={
+                <LocalizedClientLink
+                  className="hover:text-ui-fg-base flex gap-2"
+                  href="/cart"
+                  data-testid="nav-cart-link"
+                >
+                  Cart (0)
+                </LocalizedClientLink>
+              }
+            >
+              <CartButton />
+            </Suspense>
+          </div>
+        </nav>
+      </header>
+    </div>
+  )
 }
