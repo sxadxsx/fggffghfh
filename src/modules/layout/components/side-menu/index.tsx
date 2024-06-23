@@ -73,7 +73,6 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                       >
                         {regions && (
                           <p>🇹🇼中華民國</p>
-                          />
                         )}
                         <ArrowRightMini
                           className={clx(
@@ -83,7 +82,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                         />
                       </div>
                       <Text className="flex justify-between txt-compact-small">
-                        Copyright © 2023 雙龍體育購物
+                        Copyright © 2023 雙龍體育購物 All rights
                         reserved.
                       </Text>
                     </div>
