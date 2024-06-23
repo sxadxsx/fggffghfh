@@ -10,11 +10,11 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CountrySelect from "../country-select"
 
 const SideMenuItems = {
-  Home: "/",
-  Store: "/store",
-  Search: "/search",
-  Account: "/account",
-  Cart: "/cart",
+  首頁: "/",
+  購物: "/store",
+  搜尋: "/search",
+  帳號: "/account",
+  購物車: "/cart",
 }
 
 const SideMenu = ({ regions }: { regions: Region[] | null }) => {
@@ -28,7 +28,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
             <>
               <div className="relative flex h-full">
                 <Popover.Button data-testid="nav-menu-button" className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base">
-                  Menu
+                  菜單
                 </Popover.Button>
               </div>
 
@@ -72,9 +72,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                         onMouseLeave={toggleState.close}
                       >
                         {regions && (
-                          <CountrySelect
-                            toggleState={toggleState}
-                            regions={regions}
+                          <p>🇹🇼中華民國</p>
                           />
                         )}
                         <ArrowRightMini
@@ -85,7 +83,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                         />
                       </div>
                       <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Medusa Store. All rights
+                        Copyright © 2023 雙龍體育購物
                         reserved.
                       </Text>
                     </div>
