@@ -1,152 +1,194 @@
-import { Text, clx } from "@medusajs/ui"
+import Script from 'next/script';
 
-import { getCategoriesList, getCollectionsList } from "@lib/data"
-
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
-
-export default async function Footer() {
-  const { collections } = await getCollectionsList(0, 6)
-  const { product_categories } = await getCategoriesList(0, 6)
-
+function footer() {
   return (
-    <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
+    <footer className="bg-gray-50 dark:bg-gray-800">
+      <div className="p-4 py-6 mx-auto max-w-screen-xl md:p-8 lg:p-10">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
           <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">組織</h2>
+            <ul className="text-gray-500 dark:text-gray-400">
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/blog" className="hover:underline">
+                  部落格
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/contact" className="hover:underline">
+                  聯繫
+                </a>
+              </li>
+              <li className="mb-4">
+                <a id="footer-badge" href="https://status.ssangyongsports.eu.org">
+                  載入狀態中
+                </a>
+                <script
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      function updateFooterBadge(status) {
+                        const badge = document.getElementById('footer-badge');
+                        badge.textContent = status === 'UP' ? '系統運行中' : '狀態異常';
+                        badge.className = status.toLowerCase();
+                      }
+
+                      fetch('https://status.ssangyongsports.eu.org/summary.json')
+                        .then(response => response.json())
+                        .then(data => {
+                          const status = data.page.status;
+                          updateFooterBadge(status);
+                          badge.href = data.page.url;
+                        })
+                        .catch(error => {
+                          console.error('無法讀取系統狀態', error);
+                        });
+                    `,
+                  }}
+                ></script>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">幫助</h2>
+            <ul className="text-gray-500 dark:text-gray-400">
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/support" className="hover:underline">
+                  幫助中心
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/chat" className="hover:underline">
+                  線上客服
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://discuss.ssangyongsports.eu.org/d/1" className="hover:underline">
+                  論壇
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/contact" className="hover:underline">
+                  聯繫
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">條款</h2>
+            <ul className="text-gray-500 dark:text-gray-400">
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/p" className="hover:underline">
+                  隱私政策
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/t" className="hover:underline">
+                  服務條款
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">雙龍體育TV</h2>
+            <ul className="text-gray-500 dark:text-gray-400">
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/tv" className="hover:underline">
+                  官網
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/contact?mode=tv" className="hover:underline">
+                  註冊
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/watch-tv" className="hover:underline">
+                  登入
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">體育</h2>
+            <ul className="text-gray-500 dark:text-gray-400">
+              <li className="mb-4">
+                <a href="https://slb.ssangyongsports.eu.org" className="hover:underline">
+                  雙龍職棒
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://sba.ssangyongsports.eu.org" className="hover:underline">
+                  雙龍職籃
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://ssangyongsports.eu.org/" className="hover:underline">
+                  雙龍足球
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <div className="text-center">
+          <a href="https://ssangyongsports.eu.org/" className="flex justify-center items-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
+            <img src="https://ssangyongsports.eu.org/logo.png" width={186} height={46} alt="雙龍體育Logo" />
+          </a>
+          <span className="block text-sm text-center text-gray-500 dark:text-gray-400">
+            Copyright © 2024
+            <a href="https://ssangyongsports.eu.org/" className="hover:underline">
+              雙龍體育,
+            </a>
+            維護團隊：雙龍體育
+          </span>
+          <ul className="flex justify-center mt-5 space-x-5">
+            <li>
+              <a href="https://www.facebook.com/ssangyongsports/" className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fillRule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/ssport_org" className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
+                
+            <svg
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-              Medusa Store
-            </LocalizedClientLink>
-          </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {product_categories && product_categories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul className="grid grid-cols-1 gap-2" data-testid="footer-categories">
-                  {product_categories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
-
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
-
-                    return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
-                          href={`/categories/${c.handle}`}
-                          data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )}
-            {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
-                <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
-                >
-                  {collections?.slice(0, 6).map((c) => (
-                    <li key={c.id}>
-                      <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
-                        href={`/collections/${c.handle}`}
-                      >
-                        {c.title}
-                      </LocalizedClientLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
-                <li>
-                  <a
-                    href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/medusajs/nextjs-starter-medusa"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Source code
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
-          </Text>
-          <MedusaCTA />
-        </div>
-      </div>
-    </footer>
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/ssangyongsportsorg"
+            className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </a>
+        </li>       
+      </ul>
+    </div>
+  </div>
+</footer>
   )
 }
+
+export default footer;
