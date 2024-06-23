@@ -1,12 +1,12 @@
-import { Suspense } from "react"
+import { Suspense } from "react";
 
-import { listRegions } from "@lib/data"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import CartButton from "@modules/layout/components/cart-button"
-import SideMenu from "@modules/layout/components/side-menu"
+import { listRegions } from "@lib/data";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import CartButton from "@modules/layout/components/cart-button";
+import SideMenu from "@modules/layout/components/side-menu";
 
 export default async function Nav() {
-  const regions = await listRegions().then((regions) => regions)
+  const regions = await listRegions();
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -25,7 +25,6 @@ export default async function Nav() {
               data-testid="nav-store-link"
             >
               <img className="h-8 w-auto" src="/logo.png" alt="" />
-        
             </LocalizedClientLink>
           </div>
 
@@ -66,5 +65,5 @@ export default async function Nav() {
         </nav>
       </header>
     </div>
-  )
+  );
 }
