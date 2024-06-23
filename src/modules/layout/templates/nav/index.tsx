@@ -24,7 +24,7 @@ export default async function Nav() {
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
               data-testid="nav-store-link"
             >
-              <img className="h-8 w-auto" src="/logo.png" alt="" />
+              <img className="h-8 w-auto" src="https://imgur.com/m3GZIgA.jpeg" alt="" />
         
             </LocalizedClientLink>
           </div>
