@@ -61,20 +61,20 @@ const Register = ({ setCurrentView }: Props) => {
         </div>
         <ErrorMessage error={message} data-testid="register-error" />
         <span className="text-center text-ui-fg-base text-small-regular mt-6">
-          建立帳戶即表示您同意&apos;s{" "}
-          <LocalizedClientLink
+          建立帳戶即表示您同意
+          <a
             href="https://ssangyongsports.eu.org/p"
             className="underline"
           >
             隱私政策
-          </LocalizedClientLink>{" "}
-          and{" "}
-          <LocalizedClientLink
+          </a>{" "}
+          和{" "}
+          <a
             href="https://ssangyongsports.eu.org/t"
             className="underline"
           >
             服務條款
-          </LocalizedClientLink>
+          </a>
           .
         </span>
         <SubmitButton className="w-full mt-6" data-testid="register-button">Join</SubmitButton>
