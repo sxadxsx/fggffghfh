@@ -22,17 +22,17 @@ const Login = ({ setCurrentView }: Props) => {
       <form className="w-full" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
           <Input
-            label="Email"
-            name="電子郵件"
+            label="電子郵件"
+            name="email"
             type="email"
-            title="Enter a valid email address."
+            title="輸入一個有效的電子郵件"
             autoComplete="email"
             required
             data-testid="email-input"
           />
           <Input
-            label="Password"
-            name="密碼"
+            label="密碼"
+            name="password"
             type="password"
             autoComplete="current-password"
             required
@@ -40,7 +40,7 @@ const Login = ({ setCurrentView }: Props) => {
           />
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
-        <SubmitButton data-testid="sign-in-button" className="w-full mt-6">Sign in</SubmitButton>
+        <SubmitButton data-testid="sign-in-button" className="w-full mt-6">登入</SubmitButton>
       </form>
       <span className="text-center text-ui-fg-base text-small-regular mt-6">
         不是會員?{" "}
