@@ -6,7 +6,6 @@ import { Button, Heading, Text, clx } from "@medusajs/ui"
 import { Address, Region } from "@medusajs/medusa"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
-import CountrySelect from "@modules/checkout/components/country-select"
 import Input from "@modules/common/components/input"
 import Modal from "@modules/common/components/modal"
 import {
@@ -103,7 +102,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
             data-testid="address-edit-button"
           >
             <Edit />
-            Edit
+            編輯
           </button>
           <button
             className="text-small-regular text-ui-fg-base flex items-center gap-x-2"
@@ -111,21 +110,21 @@ const EditAddress: React.FC<EditAddressProps> = ({
             data-testid="address-delete-button"
           >
             {removing ? <Spinner /> : <Trash />}
-            Remove
+            刪除
           </button>
         </div>
       </div>
 
       <Modal isOpen={state} close={close} data-testid="edit-address-modal">
         <Modal.Title>
-          <Heading className="mb-2">Edit address</Heading>
+          <Heading className="mb-2">編輯地址</Heading>
         </Modal.Title>
         <form action={formAction}>
           <Modal.Body>
             <div className="grid grid-cols-1 gap-y-2">
               <div className="grid grid-cols-2 gap-x-2">
                 <Input
-                  label="First name"
+                  label="名字"
                   name="first_name"
                   required
                   autoComplete="given-name"
@@ -133,7 +132,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   data-testid="first-name-input"
                 />
                 <Input
-                  label="Last name"
+                  label="姓氏"
                   name="last_name"
                   required
                   autoComplete="family-name"
@@ -142,14 +141,14 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 />
               </div>
               <Input
-                label="Company"
+                label="公司"
                 name="company"
                 autoComplete="organization"
                 defaultValue={address.company || undefined}
                 data-testid="company-input"
               />
               <Input
-                label="Address"
+                label="地址"
                 name="address_1"
                 required
                 autoComplete="address-line1"
@@ -157,7 +156,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 data-testid="address-1-input"
               />
               <Input
-                label="Apartment, suite, etc."
+                label="公寓、套房等"
                 name="address_2"
                 autoComplete="address-line2"
                 defaultValue={address.address_2 || undefined}
@@ -165,7 +164,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
               <div className="grid grid-cols-[144px_1fr] gap-x-2">
                 <Input
-                  label="Postal code"
+                  label="郵遞區號"
                   name="postal_code"
                   required
                   autoComplete="postal-code"
@@ -173,7 +172,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   data-testid="postal-code-input"
                 />
                 <Input
-                  label="City"
+                  label="城市"
                   name="city"
                   required
                   autoComplete="locality"
@@ -182,22 +181,21 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 />
               </div>
               <Input
-                label="Province / State"
+                label="省 / 州"
                 name="province"
                 autoComplete="address-level1"
                 defaultValue={address.province || undefined}
                 data-testid="state-input"
               />
-              <CountrySelect
+              {/* 隱藏國家選擇 */}
+              <input
+                type="hidden"
                 name="country_code"
-                region={region}
-                required
-                autoComplete="country"
-                defaultValue={address.country_code || undefined}
+                value="TW"
                 data-testid="country-select"
               />
               <Input
-                label="Phone"
+                label="電話"
                 name="phone"
                 autoComplete="phone"
                 defaultValue={address.phone || undefined}
@@ -219,9 +217,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 className="h-10"
                 data-testid="cancel-button"
               >
-                Cancel
+                取消
               </Button>
-              <SubmitButton data-testid="save-button">Save</SubmitButton>
+              <SubmitButton data-testid="save-button">保存</SubmitButton>
             </div>
           </Modal.Footer>
         </form>
