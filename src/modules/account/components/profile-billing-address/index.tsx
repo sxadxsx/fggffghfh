@@ -147,21 +147,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
             defaultValue={customer.billing_address?.province || undefined}
             data-testid="billing-province-input"
           />
-          <NativeSelect
-            name="billing_address.country_code"
-            defaultValue={customer.billing_address?.country_code || undefined}
-            required
-            data-testid="billing-country-code-select"
-          >
-            <option value="">-</option>
-            {regionOptions.map((option, i) => {
-              return (
-                <option key={i} value={option.value}>
-                  {option.label}
-                </option>
-              )
-            })}
-          </NativeSelect>
+          
         </div>
       </AccountInfo>
     </form>
