@@ -1,13 +1,9 @@
-"use client"
-
 import { Region } from "@medusajs/medusa"
 import { Plus } from "@medusajs/icons"
 import { Button, Heading } from "@medusajs/ui"
 import { useEffect, useState } from "react"
 import { useFormState } from "react-dom"
-
 import useToggleState from "@lib/hooks/use-toggle-state"
-import CountrySelect from "@modules/checkout/components/country-select"
 import Input from "@modules/common/components/input"
 import Modal from "@modules/common/components/modal"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
@@ -47,27 +43,27 @@ const AddAddress = ({ region }: { region: Region }) => {
         onClick={open}
         data-testid="add-address-button"
       >
-        <span className="text-base-semi">New address</span>
+        <span className="text-base-semi">新增地址</span>
         <Plus />
       </button>
 
       <Modal isOpen={state} close={close} data-testid="add-address-modal">
         <Modal.Title>
-          <Heading className="mb-2">Add address</Heading>
+          <Heading className="mb-2">新增地址</Heading>
         </Modal.Title>
         <form action={formAction}>
           <Modal.Body>
             <div className="flex flex-col gap-y-2">
               <div className="grid grid-cols-2 gap-x-2">
                 <Input
-                  label="First name"
+                  label="名字"
                   name="first_name"
                   required
                   autoComplete="given-name"
                   data-testid="first-name-input"
                 />
                 <Input
-                  label="Last name"
+                  label="姓氏"
                   name="last_name"
                   required
                   autoComplete="family-name"
@@ -75,34 +71,34 @@ const AddAddress = ({ region }: { region: Region }) => {
                 />
               </div>
               <Input
-                label="Company"
+                label="公司"
                 name="company"
                 autoComplete="organization"
                 data-testid="company-input"
               />
               <Input
-                label="Address"
+                label="地址"
                 name="address_1"
                 required
                 autoComplete="address-line1"
                 data-testid="address-1-input"
               />
               <Input
-                label="Apartment, suite, etc."
+                label="公寓、套房等"
                 name="address_2"
                 autoComplete="address-line2"
                 data-testid="address-2-input"
               />
               <div className="grid grid-cols-[144px_1fr] gap-x-2">
                 <Input
-                  label="Postal code"
+                  label="郵遞區號"
                   name="postal_code"
                   required
                   autoComplete="postal-code"
                   data-testid="postal-code-input"
                 />
                 <Input
-                  label="City"
+                  label="城市"
                   name="city"
                   required
                   autoComplete="locality"
@@ -110,19 +106,18 @@ const AddAddress = ({ region }: { region: Region }) => {
                 />
               </div>
               <Input
-                label="Province / State"
+                label="省 / 州"
                 name="province"
                 autoComplete="address-level1"
                 data-testid="state-input"
               />
-              <CountrySelect
-                region={region}
+              <input
+                type="hidden"
                 name="country_code"
-                required
-                autoComplete="country"
-                data-testid="country-select"
+                value="TW"
+                data-testid="country-code-input"
               />
-              <Input label="Phone" name="phone" autoComplete="phone" data-testid="phone-input" />
+              <Input label="電話" name="phone" autoComplete="phone" data-testid="phone-input" />
             </div>
             {formState.error && (
               <div className="text-rose-500 text-small-regular py-2" data-testid="address-error">
@@ -139,9 +134,9 @@ const AddAddress = ({ region }: { region: Region }) => {
                 className="h-10"
                 data-testid="cancel-button"
               >
-                Cancel
+                取消
               </Button>
-              <SubmitButton data-testid="save-button">Save</SubmitButton>
+              <SubmitButton data-testid="save-button">保存</SubmitButton>
             </div>
           </Modal.Footer>
         </form>
