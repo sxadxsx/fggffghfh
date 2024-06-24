@@ -19,39 +19,39 @@ const Register = ({ setCurrentView }: Props) => {
   return (
     <div className="max-w-sm flex flex-col items-center" data-testid="register-page">
       <h1 className="text-large-semi uppercase mb-6">
-        Become a Medusa Store Member
+        成為雙龍體育商店的會員
       </h1>
       <p className="text-center text-base-regular text-ui-fg-base mb-4">
-        Create your Medusa Store Member profile, and get access to an enhanced
-        shopping experience.
+       建立您的雙龍體育商店會員檔案，獲得增強的
+        購物體驗。
       </p>
       <form className="w-full flex flex-col" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
           <Input
-            label="First name"
+            label="姓名"
             name="first_name"
             required
             autoComplete="given-name"
             data-testid="first-name-input"
           />
           <Input
-            label="Last name"
+            label="姓氏"
             name="last_name"
             required
             autoComplete="family-name"
             data-testid="last-name-input"
           />
           <Input
-            label="Email"
+            label="電子郵件"
             name="email"
             required
             type="email"
             autoComplete="email"
             data-testid="email-input"
           />
-          <Input label="Phone" name="phone" type="tel" autoComplete="tel" data-testid="phone-input" />
+          <Input label="電話" name="phone" type="tel" autoComplete="tel" data-testid="phone-input" />
           <Input
-            label="Password"
+            label="密碼"
             name="password"
             required
             type="password"
@@ -61,31 +61,31 @@ const Register = ({ setCurrentView }: Props) => {
         </div>
         <ErrorMessage error={message} data-testid="register-error" />
         <span className="text-center text-ui-fg-base text-small-regular mt-6">
-          By creating an account, you agree to Medusa Store&apos;s{" "}
+          建立帳戶即表示您同意&apos;s{" "}
           <LocalizedClientLink
-            href="/content/privacy-policy"
+            href="https://ssangyongsports.eu.org/p"
             className="underline"
           >
-            Privacy Policy
+            隱私政策
           </LocalizedClientLink>{" "}
           and{" "}
           <LocalizedClientLink
-            href="/content/terms-of-use"
+            href="https://ssangyongsports.eu.org/t"
             className="underline"
           >
-            Terms of Use
+            服務條款
           </LocalizedClientLink>
           .
         </span>
         <SubmitButton className="w-full mt-6" data-testid="register-button">Join</SubmitButton>
       </form>
       <span className="text-center text-ui-fg-base text-small-regular mt-6">
-        Already a member?{" "}
+        已經是會員了?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
           className="underline"
         >
-          Sign in
+          立刻登入
         </button>
         .
       </span>
