@@ -10,22 +10,22 @@ const Hero = () => {
             level="h1"
             className="text-3xl leading-10 text-ui-fg-base font-normal"
           >
-            Ecommerce Starter Template
+            雙龍體育商店正在構建中
           </Heading>
           <Heading
             level="h2"
             className="text-3xl leading-10 text-ui-fg-subtle font-normal"
           >
-            Powered by Medusa and Next.js
+            請敬請等待
           </Heading>
         </span>
         <a
-          href="https://github.com/medusajs/nextjs-starter-medusa"
+          href="https://ssangyongsports.eu.org"
           target="_blank"
         >
           <Button variant="secondary">
-            View on GitHub
-            <Github />
+            返回官網
+          
           </Button>
         </a>
       </div>
